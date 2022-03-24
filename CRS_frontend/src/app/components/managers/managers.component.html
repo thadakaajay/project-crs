@@ -1,0 +1,112 @@
+<div class="container">
+   <br />
+   <div class="container" style="width: 50%; float: left">
+      <h1>REGISTER</h1>
+      <br />
+      <form (ngSubmit)="registerManager()">
+         <div class="form-group">
+            <label>EMAIL : </label>
+            <input type="text" class="form-control" name="managerEmail" [(ngModel)]="manager.managerEmail" placeholder="Enter email" />
+         </div>
+
+         <div class="form-group">
+            <label>PASSWORD : </label>
+            <input type="password" class="form-control" name="managerPassword" [(ngModel)]="manager.managerPassword" placeholder="Enter password" />
+         </div>
+
+         <div class="form-group">
+            <label>NAME : </label>
+            <input type="text" class="form-control" name="managerName" [(ngModel)]="manager.managerName" placeholder="Enter name" />
+         </div>
+
+         <div class="form-group">
+            <label>PINCODE : </label>
+            <input type="text" class="form-control" name="managerPincode" [(ngModel)]="manager.managerPincode" placeholder="Enter pincode" />
+         </div>
+         <button type="submit" class="btn btn-success btn-lg">REGISTER</button>
+      </form>
+   </div>
+   <div class="container" style="width: 50%; float: right">
+      <h1>LOGIN</h1>
+      <br />
+      <form [formGroup]="loginForm" (ngSubmit)="validateManager()">
+         <div class="form-group">
+            <label>EMAIL : </label>
+            <input type="text" class="form-control" name="managerEmail" formControlName="managerEmail" placeholder="Enter email" />
+         </div>
+
+         <div class="form-group">
+            <label>PASSWORD : </label>
+            <input type="password" class="form-control" name="managerPassword" formControlName="managerPassword" placeholder="Enter password" />
+         </div>
+         <button type="submit" class="btn btn-success btn-lg">LOGIN</button>
+      </form>
+   </div>
+</div>
+<div class="container clearfix">
+   <br />
+   <br />
+   <button *ngIf="managerloginStatus" (click)="getAllComplaintsByPincode()" class="btn btn-danger btn-lg">View All Complaints</button>
+
+   <button *ngIf="managerloginStatus" (click)="getAllFeedbacks()" class="btn btn-danger btn-lg">View All Feebacks</button>
+</div>
+<!-- -------------------------View Complaints------------------------- -->
+<br />
+<br /><br /><br />
+<div *ngIf="viewComplaints" class="container">
+   <h1>COMPLAINTS</h1>
+   <table class="table table-bordered table-hover table-stripped table-secondary">
+      <tbody ng-repeat="complaint in complaints">
+         <tr *ngFor="let complaint of complaints">
+            <div class="container">
+               <form (ngSubmit)="engineersDuty(complaint)">
+                  <td><label for="ticketId">Ticket Id :</label><input type="text" id="ticketId" name="ticketId" value="{{ complaint.ticketId }}" disabled /></td>
+
+                  <td><label for="customerEmail">Customer Email :</label><input type="text" name="customerEmail" value="{{ complaint.customerEmail }}" id="customerEmail" disabled /></td>
+
+                  <td><label for="complaint">Complaint :</label><input type="text" name="complaint" value="{{ complaint.complaint }}" id="complaint" disabled /></td>
+
+                  <td><label for="pincode">Pincode :</label><input type="text" name="pincode" value="{{ complaint.pincode }}" id="pincode" disabled /></td>
+
+                  <td><label for="status">Status :</label><input type="text" name="status" value="{{ complaint.status }}" id="status" disabled /></td>
+
+                  <td>
+                     <button *ngIf="assignEngineersButton" (click)="assignEngineers()" class="btn btn-danger btn-lg">Assign Engineers</button>
+
+                     <select *ngIf="assignEngineersDropdown" (change)="engineerSelected($event)">
+                        <option *ngFor="let mail of engineerEmails" value="{{ mail }}">{{ mail }}</option>
+                     </select>
+                  </td>
+                  <td><button type="submit" class="btn btn-primary btn-lg">Submit</button></td>
+               </form>
+            </div>
+         </tr>
+      </tbody>
+   </table>
+</div>
+<br />
+<br /><br /><br />
+<!-- -------------------view Feedbacks------------------------ -->
+<div class="container">
+   <div *ngIf="viewFeedbacks">
+      <h1>FEEDBACKS</h1>
+      <table class="table table-bordered table-stripped table-hover table-secondary">
+         <thead>
+            <tr>
+               <th style="padding-right: 5px">Feedback Id</th>
+               <th style="padding-right: 5px">Ticket Id</th>
+               <th style="padding-right: 5px">Customer Email</th>
+               <th style="padding-right: 5px">Feedback</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let feedback of feedbacks">
+               <td style="padding-right: 5px" scope="row">{{ feedback.feedbackId }}</td>
+               <td style="padding-right: 5px">{{ feedback.ticketId }}</td>
+               <td style="padding-right: 5px">{{ feedback.customerEmail }}</td>
+               <td style="padding-right: 5px">{{ feedback.feedback }}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>

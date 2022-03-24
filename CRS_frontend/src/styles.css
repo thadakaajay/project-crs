@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+   background: url(https://th.bing.com/th/id/R.d80c728de106d6b9c33f813ec45ce8c4?rik=LCcFvblNl1eH6w&riu=http%3a%2f%2f4.bp.blogspot.com%2f-Uk_KFP52APE%2fURd2jbxosPI%2fAAAAAAAAKwo%2fdPSSk-YE4MQ%2fs1600%2fplain%2bblue%2bcool%2bhd%2bimages.jpg&ehk=CJNWXNQgt3sjZ7WIVIngZpW29l5B7cLy5iAUH%2bHsdqM%3d&risl=&pid=ImgRaw&r=0) no-repeat center center fixed;
+   /* -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover; */
+   background-size: cover;
+   background-position: relative;
+}

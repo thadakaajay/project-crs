@@ -1,0 +1,62 @@
+<div class="row text-center text-black mb-5">
+   <div class="col-lg-7 mx-auto">
+      <h1>COMPLAINTS</h1>
+   </div>
+</div>
+<div class="container" style="margin: auto; width: 50%; padding-left: 220px">
+   <form (ngSubmit)="registerComplaint()">
+      <div class="form-group">
+         <label>EMAIL : </label>
+         <input type="text" class="form-control" name="customerEmail" [(ngModel)]="complaint.customerEmail" placeholder="Enter email" />
+      </div>
+
+      <div class="form-group">
+         <label>PINCODE : </label>
+         <input type="text" class="form-control" name="pincode" [(ngModel)]="complaint.pincode" placeholder="Enter pincode" />
+      </div>
+
+      <div class="form-group">
+         <label>COMPLAINT : </label>
+         <input type="text" class="form-control" name="complaint" [(ngModel)]="complaint.complaint" placeholder="Enter complaint" />
+      </div>
+
+      <div class="form-group">
+         <label>STATUS : </label>
+         <input type="text" class="form-control" name="status" [(ngModel)]="complaint.status" placeholder="Enter status" />
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-lg" style="margin-left: 100px">SUBMIT</button>
+   </form>
+</div>
+<br />
+<div class="container" style="padding-left: 50px">
+   <button (click)="getAllComplaintsByEmail(complaint.customerEmail)" class="btn btn-danger btn-lg">View All Complaints</button>
+</div>
+<br />
+<!-- ---------------------- view complaints ----------------------- -->
+<div class="container" style="width: 70%">
+   <div *ngIf="viewComplaints">
+      <table class="table table-bordered table-stripped table-hover table-secondary">
+         <thead>
+            <tr>
+               <th scope="col">TICKET ID</th>
+               <th scope="col">CUSTOMER EMAIL</th>
+               <th scope="col">COMPLAINT</th>
+               <th scope="col">PINCODE</th>
+               <th scope="col">STATUS</th>
+               <th scope="col">REVIEW</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let complaint of complaints">
+               <td scope="row">{{ complaint.ticketId }}</td>
+               <td>{{ complaint.customerEmail }}</td>
+               <td>{{ complaint.complaint }}</td>
+               <td>{{ complaint.pincode }}</td>
+               <td>{{ complaint.status }}</td>
+               <td><button (click)="sendComplaintDetails(complaint)" class="btn btn-danger btn-lg">Send Feedback</button></td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>

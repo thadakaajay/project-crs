@@ -1,0 +1,57 @@
+<div class="container clearfix">
+   <br />
+   <div class="" style="width: 50%; float: left">
+      <h1>REGISTER</h1>
+      <br />
+      <form (ngSubmit)="registerCustomer()">
+         <div class="form-group">
+            <label>EMAIL : </label>
+            <input type="text" class="form-control" name="customerEmail" [(ngModel)]="customer.customerEmail" placeholder="Enter email" />
+         </div>
+
+         <div class="form-group">
+            <label>PASSWORD : </label>
+            <input type="password" class="form-control" name="customerPassword" [(ngModel)]="customer.customerPassword" placeholder="Enter password" />
+         </div>
+
+         <div class="form-group">
+            <label>NAME : </label>
+            <input type="text" class="form-control" name="customerName" [(ngModel)]="customer.customerName" placeholder="Enter name" />
+         </div>
+
+         <div class="form-group">
+            <label>MOBILE : </label>
+            <input type="text" class="form-control" name="customerMobile" [(ngModel)]="customer.customerMobile" placeholder="Enter mobile number" />
+         </div>
+
+         <div class="form-group">
+            <label>ADDRESS : </label>
+            <input type="text" class="form-control" name="customerAddress" [(ngModel)]="customer.customerAddress" placeholder="Enter address" />
+         </div>
+
+         <div class="form-group">
+            <label>PINDCOE : </label>
+            <input type="text" class="form-control" name="customerPincode" [(ngModel)]="customer.customerPincode" placeholder="Enter pincode" />
+         </div>
+         <button type="submit" class="btn btn-success btn-lg">REGISTER</button>
+      </form>
+   </div>
+   <br />
+   <br />
+   <div class="" style="width: 50%; float: right">
+      <h1>LOGIN</h1>
+      <br />
+      <form [formGroup]="loginForm" (ngSubmit)="validateCustomer()">
+         <div class="form-group">
+            <label>EMAIL : </label>
+            <input type="text" class="form-control" name="customerEmail" formControlName="customerEmail" placeholder="Enter email" />
+         </div>
+
+         <div class="form-group">
+            <label>PASSWORD : </label>
+            <input type="password" class="form-control" name="customerPassword" formControlName="customerPassword" placeholder="Enter password" />
+         </div>
+         <button type="submit" class="btn btn-success btn-lg">LOGIN</button>
+      </form>
+   </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="container">
+   <br />
+   <div class="container" style="width: 50%; float: left">
+      <h1>REGISTER</h1>
+      <br />
+      <form (ngSubmit)="registerEngineer()">
+         <div class="form-group">
+            <label>EMAIL : </label>
+            <input type="text" class="form-control" name="engineerEmail" [(ngModel)]="engineer.engineerEmail" placeholder="Enter email" />
+         </div>
+
+         <div class="form-group">
+            <label>PASSWORD : </label>
+            <input type="password" class="form-control" name="engineerPassword" [(ngModel)]="engineer.engineerPassword" placeholder="Enter password" />
+         </div>
+
+         <div class="form-group">
+            <label>NAME : </label>
+            <input type="text" class="form-control" name="engineerName" [(ngModel)]="engineer.engineerName" placeholder="Enter name" />
+         </div>
+
+         <button type="submit" class="btn btn-success btn-lg">REGISTER</button>
+      </form>
+   </div>
+   <div class="container" style="width: 50%; float: right">
+      <h1>LOGIN</h1>
+      <br />
+      <form [formGroup]="loginForm" (ngSubmit)="validateEngineer()">
+         <div class="form-group">
+            <label>EMAIL : </label>
+            <input type="text" class="form-control" name="engineerEmail" formControlName="engineerEmail" placeholder="Enter email" />
+         </div>
+
+         <div class="form-group">
+            <label>PASSWORD : </label>
+            <input type="password" class="form-control" name="engineerPassword" formControlName="engineerPassword" placeholder="Enter password" />
+         </div>
+         <button type="submit" class="btn btn-success btn-lg">LOGIN</button>
+      </form>
+   </div>
+</div>
+<div class="container clearfix">
+   <br /><br /><br />
+   <button *ngIf="engineerLoginStatus" (click)="getAllComplaintsByTicketIds()" class="btn btn-danger btn-lg">View All Complaints</button>
+
+   <button *ngIf="engineerLoginStatus" (click)="getAllFeedbacks()" class="btn btn-danger btn-lg">View All Feebacks</button>
+</div>
+<div *ngIf="viewComplaints">
+   <table class="table">
+      <thead></thead>
+      <br />
+      <tbody>
+         <tr *ngFor="let complaint of complaints">
+            <div class="container">
+               <form (ngSubmit)="updateStatus(complaint)">
+                  <td><label for="ticketId">Ticket Id :</label><input type="text" id="ticketId" name="ticketId" value="{{ complaint.ticketId }}" disabled /></td>
+
+                  <td><label for="customerEmail">Customer Email :</label><input type="text" name="customerEmail" value="{{ complaint.customerEmail }}" id="customerEmail" disabled /></td>
+
+                  <td><label for="complaint">Complaint :</label><input type="text" name="complaint" value="{{ complaint.complaint }}" id="complaint" disabled /></td>
+
+                  <td><label for="pincode">Pincode :</label><input type="text" name="pincode" value="{{ complaint.pincode }}" id="pincode" disabled /></td>
+
+                  <td><label for="status">Status :</label><input type="text" name="status" value="{{ complaint.status }}" id="status" (change)="newStatus($event)" /></td>
+                  <td><button type="submit" class="btn btn-primary">Submit</button></td>
+               </form>
+            </div>
+         </tr>
+      </tbody>
+   </table>
+</div>
+
+<div class="container">
+   <div *ngIf="viewFeedbacks">
+      <br /><br /><br />
+      <h1>FEEDBACKS</h1>
+      <table class="table table-bordered table-stripped table-hover table-secondary">
+         <thead>
+            <tr>
+               <th scope="col">Feedback Id</th>
+               <th scope="col">Ticket Id</th>
+               <th scope="col">Customer Email</th>
+               <th scope="col">Feedback</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr *ngFor="let feedback of feedbacks">
+               <td scope="row">{{ feedback.feedbackId }}</td>
+               <td>{{ feedback.ticketId }}</td>
+               <td>{{ feedback.customerEmail }}</td>
+               <td>{{ feedback.feedback }}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+</div>
